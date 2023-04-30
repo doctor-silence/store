@@ -1,13 +1,14 @@
 from django.db import models
+
 from users.models import User
+
 
 class ProductCategory(models.Model):
     name = models.CharField(max_length=128, unique=True)
     description = models.TextField(null=True, blank=True)
 
-
     class Meta:
-        verbose_name= 'категорию'
+        verbose_name = 'категорию'
         verbose_name_plural = 'категории'
 
     def __str__(self):
@@ -23,7 +24,7 @@ class Product(models.Model):
     category = models.ForeignKey(to=ProductCategory, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name= 'продукт'
+        verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
 
     def __str__(self):
@@ -49,8 +50,5 @@ class Basket(models.Model):
     def __str__(self):
         return f'Корзина для {self.user.username} | Продукт {self.product.name}'
 
-
     def sum(self):
         return self.product.price * self.quantity
-
-
