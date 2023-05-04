@@ -1,4 +1,5 @@
 {% extends 'products/base.html' %}
+{% load cache %}
 {% load static %}
 
 {% block css %}
@@ -54,6 +55,8 @@
             </div>
 
             <div class="row">
+
+                {% cache 30 object_list %}
                 {% for product in object_list %}
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
@@ -75,8 +78,8 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% endcache %}
             </div>
-
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item {% if not page_obj.has_previous %} disabled {% endif %}">
