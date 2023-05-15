@@ -1,0 +1,10 @@
+[flake8]
+exclude =
+    migrations
+
+ignore =
+    E261
+    E262
+
+
+max-line-length = 120
